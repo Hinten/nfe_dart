@@ -1,0 +1,39 @@
+name: nfe_client
+description: >
+  Dart client for the Brazilian NF-e (Nota Fiscal Eletrônica) ecosystem.
+  Includes SEFAZ SOAP communication, XML schema models, digital signature
+  support and helpers for all NF-e operations (send, cancel, correction
+  letter, inutilization, EPEC contingency).
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  intl: any
+  diacritic: ^0.1.3
+  http: ^1.1.0
+  crypto: ^3.0.2
+  encrypt: ^5.0.3
+  xml: ^6.3.0
+  path: ^1.8.0
+  xml_crypto: ^3.2.0
+  json_annotation: ^4.5.0
+  ninja: ^3.0.8
+  ninja_pem: ^2.0.0
+  soap_client:
+    path: ../soap_client
+  xml_schema_validator:
+    path: ../xml_schema_validator
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
+  build_runner: 2.4.13
+  build_test: ^2.1.0
+  source_gen: ^1.2.2
+  build: ^2.3.0
+  json_serializable: ^6.1.4
+  xml_schema_builder:
+    path: ../xml_schema_builder

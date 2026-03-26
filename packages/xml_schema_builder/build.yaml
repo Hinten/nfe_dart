@@ -1,0 +1,17 @@
+targets:
+  $default:
+    builders:
+      xsdSchemaBuilder:
+        enabled: true
+
+builders:
+  xsdSchemaBuilder:
+    target: ":generator.dart"
+    import: "package:xml_schema_builder/builder.dart"
+    builder_factories: ["xsdSchemaBuilder"]
+    build_extensions: { ".dart": [".xsd.g.dart"] }
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen", "xsdSchemaBuilder"]
+    runs_before:
+      - json_serializable:json_serializable
