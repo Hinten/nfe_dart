@@ -170,21 +170,6 @@ pw.Page makePage({
   final destinatario = infNFe.dest;
   final bool hasDestinatario = destinatario != null;
 
-  late final double produtosTop;
-  if (currentPage == 1) {
-    produtosTop = 17.45 -
-        1.27 +
-        faturaDuplicataHeight +
-        localDeEntregaHeight +
-        localDeRetiradaHeight;
-  } else {
-    produtosTop = 17.45 -
-        1.27 -
-        destinatarioHeight -
-        transportadoraHeight -
-        calculoImpostoHeight;
-  }
-
   return pw.Page(
     pageFormat: PdfPageFormat(
       cmToPixel(29.7),

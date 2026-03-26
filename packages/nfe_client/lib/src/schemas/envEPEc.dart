@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:nfe_client/nfe_client.dart';
-import 'package:nfe_client/src/schemas/utils.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:xml_schema_validator/xml_schema_validator.dart';
 
@@ -49,7 +48,7 @@ String makeEPEC(
   final cnpj = nfe.infNFe.emit.CNPJ;
   final ie = nfe.infNFe.emit.IE;
   assert(
-      cnpj != null && ie != null, "Para gerar EPEC é necessário um CNPJ e IE");
+      cnpj != null, "Para gerar EPEC é necessário um CNPJ");
   final schema = infEventoComplexType_TEvento(
     Id: id,
     cOrgao: cOrgaoEnum.fromValue(cOrgao),

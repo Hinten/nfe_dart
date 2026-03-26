@@ -1,0 +1,17 @@
+name: exemplo_completo
+description: >
+  Exemplo completo de emissão, envio, validação e geração de DANFE de NF-e
+  usando os pacotes nfe_client e danfe_nfe em ambiente de homologação.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  nfe_client:
+    path: ../packages/nfe_client
+  danfe_nfe:
+    path: ../packages/danfe_nfe
+  xml_schema_validator:
+    path: ../packages/xml_schema_validator

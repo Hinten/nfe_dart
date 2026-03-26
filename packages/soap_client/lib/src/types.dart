@@ -606,14 +606,10 @@ class Service {
           port: port.getAttribute('name')!,
           action: soapAction!,
           soapService: soapService,
-          inputMessageTree: inputMessageTree != null
-              ? generateDocumentFromSchema(inputMessageTree,
-                  targetNamespace: targetNamespace)
-              : null,
-          outputMessageTree: outputMessageTree != null
-              ? generateDocumentFromSchema(outputMessageTree,
-                  targetNamespace: targetNamespace)
-              : null,
+          inputMessageTree: generateDocumentFromSchema(inputMessageTree,
+              targetNamespace: targetNamespace),
+          outputMessageTree: generateDocumentFromSchema(outputMessageTree,
+              targetNamespace: targetNamespace),
         ));
       }
     }
@@ -705,6 +701,7 @@ xml.XmlElement? _elementSequence(xml.XmlElement element) {
       1) {
     throw UnimplementedError('Implementar all');
   }
+  return null;
 }
 
 xml.XmlElement _generateForComplexType(xml.XmlElement element) {

@@ -1,0 +1,7 @@
+# Dart/Pub
+.dart_tool/
+pubspec.lock
+.packages
+
+# Saída gerada pelo exemplo (XMLs e PDFs)
+output/
