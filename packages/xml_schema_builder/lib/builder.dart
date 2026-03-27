@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:glob/glob.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:xml_schema_builder/src/generator.dart';
