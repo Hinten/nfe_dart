@@ -58,6 +58,7 @@ String? getCST(impostoComplexType_det imposto) {
       return icms.ICMSSN900!.CSOSN.value;
     }
   }
+  return null;
 }
 
 String? getVBCIcms(impostoComplexType_det imposto) {
@@ -115,6 +116,7 @@ String? getVBCIcms(impostoComplexType_det imposto) {
       return '0';
     }
   }
+  return null;
 }
 
 String? getVICMS(impostoComplexType_det imposto) {
@@ -172,6 +174,7 @@ String? getVICMS(impostoComplexType_det imposto) {
       return '0';
     }
   }
+  return null;
 }
 
 String? getPICMS(impostoComplexType_det imposto) {
@@ -229,6 +232,7 @@ String? getPICMS(impostoComplexType_det imposto) {
       return '0';
     }
   }
+  return null;
 }
 
 String? getVIPI(impostoComplexType_det imposto) {
@@ -238,6 +242,7 @@ String? getVIPI(impostoComplexType_det imposto) {
       return ipi.IPITrib!.vIPI;
     }
   }
+  return null;
 }
 
 String? getPIPI(impostoComplexType_det imposto) {
@@ -247,6 +252,7 @@ String? getPIPI(impostoComplexType_det imposto) {
       return ipi.IPITrib!.pIPI;
     }
   }
+  return null;
 }
 
 pw.Widget getTextBloco(
