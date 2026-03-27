@@ -1,48 +1,173 @@
 # danfe_nfe
 
-A PDF generator for the Brazilian **DANFE** (Documento Auxiliar da Nota Fiscal Eletrônica).
+> 🇧🇷 [Português](#português) &nbsp;|&nbsp; 🇺🇸 [English](#english)
 
-## Features
+---
 
-- Generate DANFE PDFs from `procNFe` XML documents
-- Supports three layouts:
-  - **Portrait** (retrato) — standard A4 portrait
-  - **Landscape** (paisagem) — A4 landscape
-  - **Simplified label** (etiqueta simplificada)
-- Generate **Carta de Correção Eletrônica** (CC-e) PDFs
-- Built on top of the [`pdf`](https://pub.dev/packages/pdf) package
+## Português
 
-## Getting started
+### O que é?
 
-Add the dependency to your `pubspec.yaml`:
+`danfe_nfe` é um gerador de PDF para o **DANFE** (Documento Auxiliar da Nota Fiscal Eletrônica) em Dart puro. A partir dos XMLs da NF-e (`procNFe`) e dos eventos, ele produz documentos PDF prontos para impressão, em três layouts distintos, utilizando o pacote [`pdf`](https://pub.dev/packages/pdf).
+
+### Funcionalidades
+
+- 🖨️ Gera DANFE em PDF a partir de um ou múltiplos XMLs `procNFe`
+- 📐 Suporte a três layouts:
+  - **Retrato** (A4 portrait) — layout padrão, mais comum
+  - **Paisagem** (A4 landscape) — layout horizontal
+  - **Etiqueta simplificada** (10×15 cm) — formato reduzido para logística
+- 📝 Gera **Carta de Correção Eletrônica** (CC-e) em PDF
+- 🏷️ Suporte a logotipo personalizado do emitente
+- ✅ Indicação visual de NF-e cancelada
+- 🎯 Funciona em Dart puro (sem dependência de Flutter)
+
+### Instalação
+
+Adicione ao seu `pubspec.yaml`:
 
 ```yaml
 dependencies:
   danfe_nfe: ^1.0.0
 ```
 
-## Usage
+### Uso
+
+#### Gerar DANFE
 
 ```dart
 import 'package:danfe_nfe/danfe_nfe.dart';
+import 'dart:io';
 
-// Generate a DANFE PDF from a procNFe XML string
-final pdfBytes = await generateDanfeFromProcNFe(procNFeXml);
+// XML procNFe — pode ser uma lista com múltiplas notas (serão páginas do mesmo PDF)
+final procNFexmls = [
+  File('35240100000000000000550010000000011000000011-procNFe.xml').readAsStringSync(),
+];
 
-// Save or display the PDF
-await File('danfe.pdf').writeAsBytes(pdfBytes);
+// Layout padrão (retrato A4)
+final pdf = await generateDanfeFromProcNFe(procNFexmls);
+await File('danfe.pdf').writeAsBytes(await pdf.save());
+
+// Layout paisagem
+final pdfPaisagem = await generateDanfeFromProcNFe(procNFexmls, paisagem: true);
+
+// Etiqueta simplificada (10×15 cm)
+final pdfEtiqueta = await generateDanfeFromProcNFe(procNFexmls, simplificado: true);
+
+// Com logotipo do emitente
+final logo = await File('logo.png').readAsBytes();
+final pdfComLogo = await generateDanfeFromProcNFe(procNFexmls, logo: logo);
 ```
 
-### Carta de Correção
+#### Indicar notas canceladas
 
 ```dart
-final pdfBytes = await generateCartaDeCorrecao(procNFeXml, eventoXml);
+// A chave é o número da NF-e (nNF), o valor indica se está cancelada
+final pdf = await generateDanfeFromProcNFe(
+  procNFexmls,
+  cancelado: {1: true},
+);
 ```
 
-## Additional information
+#### Gerar Carta de Correção (CC-e)
 
-This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
-It depends on `nfe_client` for NF-e data models.
+```dart
+final pdfCCe = await cartaDeCorrecaoPDF(
+  procNFeXmlString: procNFeXml,
+  envCCeXmlString: envCCeXml,
+  retEnvCCeXmlString: retEnvCCeXml,
+);
+await File('cce.pdf').writeAsBytes(await pdfCCe.save());
+```
 
-Issues and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
+### Informações adicionais
+
+- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart).
+- Depende do `nfe_client` para os modelos de dados da NF-e.
+- Bugs e contribuições são bem-vindos em <https://github.com/Hinten/nfe_dart/issues>.
+
+---
+
+## English
+
+### What is it?
+
+`danfe_nfe` is a pure-Dart PDF generator for the **DANFE** (Documento Auxiliar da Nota Fiscal Eletrônica — the Brazilian NF-e companion document). Given `procNFe` and event XMLs, it produces print-ready PDF documents in three different layouts, powered by the [`pdf`](https://pub.dev/packages/pdf) package.
+
+### Features
+
+- 🖨️ Generate DANFE PDFs from one or more `procNFe` XML strings
+- 📐 Three layout options:
+  - **Portrait** (A4 retrato) — standard, most common layout
+  - **Landscape** (A4 paisagem) — horizontal layout
+  - **Simplified label** (10×15 cm) — compact format for logistics
+- 📝 Generate **Carta de Correção Eletrônica** (CC-e) PDFs
+- 🏷️ Custom issuer logo support
+- ✅ Visual cancellation indicator
+- 🎯 Works in pure Dart (no Flutter dependency)
+
+### Installation
+
+Add to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  danfe_nfe: ^1.0.0
+```
+
+### Usage
+
+#### Generate DANFE
+
+```dart
+import 'package:danfe_nfe/danfe_nfe.dart';
+import 'dart:io';
+
+// procNFe XML — a list allows multiple invoices in the same PDF
+final procNFexmls = [
+  File('35240100000000000000550010000000011000000011-procNFe.xml').readAsStringSync(),
+];
+
+// Default layout (A4 portrait)
+final pdf = await generateDanfeFromProcNFe(procNFexmls);
+await File('danfe.pdf').writeAsBytes(await pdf.save());
+
+// Landscape layout
+final pdfLandscape = await generateDanfeFromProcNFe(procNFexmls, paisagem: true);
+
+// Simplified label (10×15 cm)
+final pdfLabel = await generateDanfeFromProcNFe(procNFexmls, simplificado: true);
+
+// With issuer logo
+final logo = await File('logo.png').readAsBytes();
+final pdfWithLogo = await generateDanfeFromProcNFe(procNFexmls, logo: logo);
+```
+
+#### Mark cancelled invoices
+
+```dart
+// Key = NF-e number (nNF), value = whether it is cancelled
+final pdf = await generateDanfeFromProcNFe(
+  procNFexmls,
+  cancelado: {1: true},
+);
+```
+
+#### Generate a Correction Letter (CC-e)
+
+```dart
+final pdfCCe = await cartaDeCorrecaoPDF(
+  procNFeXmlString: procNFeXml,
+  envCCeXmlString: envCCeXml,
+  retEnvCCeXmlString: retEnvCCeXml,
+);
+await File('cce.pdf').writeAsBytes(await pdfCCe.save());
+```
+
+### Additional information
+
+- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
+- It depends on `nfe_client` for NF-e data models.
+- Bugs and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
+
 
