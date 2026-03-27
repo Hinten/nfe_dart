@@ -1,39 +1,42 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# xml_schema_validator
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Dart library for parsing and validating XML documents against XSD (XML Schema Definition) schemas.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Load and parse XSD schemas from the file system
+- Recursively resolve `xs:include` and `xs:import` directives
+- Validate XML elements against complex and simple types
+- Resolve type hierarchies (extensions, restrictions, sequences, choices)
+- Exposes schema metadata used by `xml_schema_builder` for code generation
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the dependency to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  xml_schema_validator: ^1.0.0
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'package:xml_schema_validator/xml_schema_validator.dart';
+
+// Load a schema (includes/imports are resolved automatically)
+final schema = await XSdSchema.fromFile('path/to/schema.xsd');
+
+// Validate an XML document
+final doc = xml.XmlDocument.parse(xmlString);
+schema.validate(doc.rootElement);
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
+It is the low-level foundation used by `xml_schema_builder` (code generation) and
+`nfe_client` (NF-e schema validation).
+
+Issues and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
+
