@@ -1,7 +1,3 @@
-import 'dart:typed_data';
-import 'package:danfe_nfe/src/paisagem.dart';
-import 'package:danfe_nfe/src/retrato.dart';
-import 'package:danfe_nfe/src/simplificadoEtiqueta.dart';
 import 'package:danfe_nfe/src/utils.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;

@@ -1,7 +1,6 @@
 import 'package:danfe_nfe/danfe_nfe.dart';
 import 'package:test/test.dart';
 import 'dart:io';
-import 'package:pdf/widgets.dart' as pw;
 
 void main() {
   group('Teste Danfe', () {

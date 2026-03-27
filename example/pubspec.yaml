@@ -1,0 +1,18 @@
+name: nfe_example
+description: >
+  Complete example demonstrating NF-e submission, validation, processing and
+  DANFE generation using the nfe_client and danfe_nfe packages
+  against the SEFAZ homologation environment.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  nfe_client:
+    path: ../packages/nfe_client
+  danfe_nfe:
+    path: ../packages/danfe_nfe
+  xml_schema_validator:
+    path: ../packages/xml_schema_validator

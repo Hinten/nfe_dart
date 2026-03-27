@@ -3,7 +3,7 @@
 /// This example shows how the sanitization functions handle various problematic
 /// characters that are not compatible with the NFe (Nota Fiscal Eletrônica) schema.
 
-import 'package:nfe_client/src/schemas/utils.dart';
+import 'package:nfe_client/nfe_client.dart';
 
 /// Removes diacritics (accents) from a string.
 /// In production you can use the `diacritic` pub package for this.
