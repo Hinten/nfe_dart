@@ -1,7 +1,8 @@
-name: exemplo_completo
+name: nfe_example
 description: >
-  Exemplo completo de emissão, envio, validação e geração de DANFE de NF-e
-  usando os pacotes nfe_client e danfe_nfe em ambiente de homologação.
+  Complete example demonstrating NF-e submission, validation, processing and
+  DANFE generation using the nfe_client and danfe_nfe packages
+  against the SEFAZ homologation environment.
 version: 1.0.0
 publish_to: 'none'
 
