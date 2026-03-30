@@ -551,7 +551,6 @@ class Restriction{
       isValid = enumeration.map((e) => e.validate(element)).contains(true);
       if (!isValid){
         throw XSDvalidationException(element.localName, 'Element ${element} is not a valid enumeration');
-        return isValid;
       }
     }
 
@@ -634,7 +633,6 @@ class Restriction{
           print(e.value);
         }
         throw XSDvalidationException(value ?? 'null', 'Value $value is not a valid enumeration');
-        return isValid;
       }
     }
 
@@ -1085,6 +1083,7 @@ class _ComplexTypes{
     if (resp.isNotEmpty){
       return resp.first;
     }
+    return null;
   }
 
 }

@@ -1,17 +1,20 @@
 name: danfe_nfe
-description: DANFE (Documento Auxiliar da Nota Fiscal Eletrônica) PDF generator for Brazilian NF-e.
+description: >-
+  DANFE (Documento Auxiliar da Nota Fiscal Eletrônica) PDF generator for
+  Brazilian NF-e. Supports portrait, landscape and simplified label layouts.
 version: 1.0.0
-publish_to: 'none'
+repository: https://github.com/Hinten/nfe_dart
+homepage: https://github.com/Hinten/nfe_dart/tree/main/packages/danfe_nfe
+issue_tracker: https://github.com/Hinten/nfe_dart/issues
 
 environment:
   sdk: ^3.0.0
 
 dependencies:
-  intl: any
+  intl: ^0.20.0
   pdf: ^3.8.4
   barcode: ^2.2.3
-  nfe_client:
-    path: ../nfe_client
+  nfe_client: ^1.0.0
 
 dev_dependencies:
   lints: ^2.0.0

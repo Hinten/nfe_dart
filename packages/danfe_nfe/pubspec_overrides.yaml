@@ -1,0 +1,10 @@
+# Local development overrides — not published to pub.dev.
+# Allows working with local path dependencies while pubspec.yaml
+# declares hosted version constraints for pub.dev publication.
+dependency_overrides:
+  nfe_client:
+    path: ../nfe_client
+  soap_client:
+    path: ../soap_client
+  xml_schema_validator:
+    path: ../xml_schema_validator

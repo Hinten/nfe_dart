@@ -89,7 +89,6 @@ class XsdTemplate {
     final schema = visitor.xsdSchema;
 
     final root = schema.root;
-    final rootElements = schema.elements;
     final rootChildren = root.childElements;
     if (rootChildren.length > 1){
       assert (visitor.rootElementName != null, "Multiple root elements found, please specify the root element name");
@@ -105,7 +104,6 @@ class XsdTemplate {
         final Set<String> fromXmlElements = {};
         final Set<String> fromXmlAttributes = {};
         final _name = xmlElement.getAttribute('name');
-        final _type = xmlElement.getAttribute('type');
         assert (_name != null);
         buffer.write("@JsonSerializable()");
         buffer.write("class $rootName {");
@@ -280,8 +278,6 @@ class XsdTemplate {
     final simpleTypes = element.simpleType;
     final complexTypes = element.complexType;
     final choice = element.choice;
-    // final sequence = element.sequence;
-    final attributes = element.attributes;
     if (type == 'base64Binary'){
       buffer.writeln(buildBase64Binary(
         element.name!,
@@ -865,7 +861,7 @@ class XsdTemplate {
 
     try{
       baseType = visitor.xsdSchema.findType(base);
-    } on xsd.XSDvalidationException catch(e){
+    } on xsd.XSDvalidationException {
       baseType = null;
     }
 
@@ -1166,9 +1162,6 @@ class XsdTemplate {
     Set<String> written = {};
     final minOccurs = sequence.minOccurs;
     final maxOccurs = sequence.maxOccurs;
-    final elements = sequence.elements;
-    final choices = sequence.choice;
-    final extraSequence = sequence.sequence;
     final simpleTypes = sequence.simpleTypes;
     final complexTypes = sequence.complexTypes;
     if (simpleTypes?.isNotEmpty ?? false){
@@ -1177,26 +1170,17 @@ class XsdTemplate {
     if (complexTypes?.isNotEmpty ?? false){
       throw Exception('Complex types are not supported');
     }
-    bool isIterable = false;
     bool _isNullable = false;
     if (minOccurs == 0){
-      isIterable = false;
       _isNullable = true;
     } else if (minOccurs == null){
-      isIterable = false;
       _isNullable = false;
     } else if (minOccurs > 1){
-      isIterable = true;
       _isNullable = false;
     }
 
     if (maxOccurs == 0){
-      isIterable = false;
       _isNullable = true;
-    } else if (maxOccurs == 1){
-      isIterable = false;
-    } else if (maxOccurs != null && maxOccurs > 1){
-      isIterable = true;
     }
 
     isNullable ??= _isNullable;
@@ -1268,21 +1252,16 @@ class XsdTemplate {
       throw Exception('Child Choices of Choices are not supported');
     }
     bool isIterable = false;
-    bool isNullable = false;
     if (minOccurs == 0){
       isIterable = false;
-      isNullable = true;
     } else if (minOccurs == null){
       isIterable = false;
-      isNullable = false;
     } else if (minOccurs > 1){
       isIterable = true;
-      isNullable = false;
     }
 
     if (maxOccurs == 0){
       isIterable = false;
-      isNullable = true;
     } else if (maxOccurs == 1){
       isIterable = false;
     } else if (maxOccurs != null && maxOccurs > 1){
@@ -1691,7 +1670,7 @@ class XsdTemplate {
         } else {
           throw Exception('Attribute type is not a simple type\n $targetType');
         }
-      } on xsd.XSDvalidationException catch (e){
+    } on xsd.XSDvalidationException {
         if ((type == 'ID' || type == 'anyURI' || type == 'base64Binary') && (fixed == null || fixed.isEmpty)){
           if (required){
             buffer.writeln('String $name;');
@@ -1794,7 +1773,6 @@ class XsdTemplate {
     final List<String> writes = [];
     final extensions = simpleContent.extensions;
 
-    final List<String> extensionWrites = [];
     final List<String> toXmlExtensionAttributes = [];
     final List<String> fromXmlExtensionAttributes = [];
 
@@ -2037,7 +2015,7 @@ class XsdTemplate {
             _buildRestriction(
               restriction: restriction,
               name: name,
-              elementName: elementName ?? name,
+              elementName: elementName,
               isAttribute: baseIsAtrribute,
               isNullable: isNullable,
               isIterable: false,
