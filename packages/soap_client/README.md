@@ -2,6 +2,8 @@
 
 > 🇧🇷 [Português](#português) &nbsp;|&nbsp; 🇺🇸 [English](#english)
 
+> **Monorepo:** Este pacote faz parte do [nfe_dart](https://github.com/Hinten/nfe_dart) — veja o [README raiz](https://github.com/Hinten/nfe_dart#readme) para a visão geral completa do ecossistema e como as packages trabalham juntas.
+
 ---
 
 ## Português
@@ -11,6 +13,12 @@
 `soap_client` é um cliente SOAP leve para aplicações Dart puro e Flutter com suporte a **mTLS (TLS mútuo)**. Ele monta e faz o parse de envelopes SOAP, realiza a descoberta automática de operações via WSDL e gerencia autenticação com certificados de cliente.
 
 É utilizado pelo `nfe_client` como camada de transporte para comunicação com os web services do SEFAZ (que utilizam SOAP com certificados A1/A3).
+
+### Packages relacionadas
+
+| Package | Função |
+|---------|--------|
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Usa este pacote como transporte SOAP/mTLS para o SEFAZ |
 
 ### Funcionalidades
 
@@ -66,7 +74,7 @@ final client = SoapClient.nfe(
 
 ### Informações adicionais
 
-- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart).
+- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart). Consulte o [README raiz](https://github.com/Hinten/nfe_dart#readme) para o fluxo completo de uso.
 - Bugs e contribuições são bem-vindos em <https://github.com/Hinten/nfe_dart/issues>.
 
 ---
@@ -79,9 +87,13 @@ final client = SoapClient.nfe(
 
 It is used by `nfe_client` as the transport layer for communicating with SEFAZ web services (which use SOAP with A1/A3 certificates).
 
-### Features
+### Related packages
 
-- 📨 Build and parse SOAP 1.1 and 1.2 envelopes
+| Package | Role |
+|---------|------|
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Uses this package as the SOAP/mTLS transport layer for SEFAZ |
+
+### Features
 - 🔍 Automatic WSDL operation discovery before requests
 - 🔐 mTLS authentication with client certificate and private key
 - 📜 Trusted root certificate support (custom CAs)
@@ -133,7 +145,7 @@ final client = SoapClient.nfe(
 
 ### Additional information
 
-- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
+- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo. See the [root README](https://github.com/Hinten/nfe_dart#readme) for the full ecosystem overview.
 - Bugs and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
 
 

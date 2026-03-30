@@ -2,6 +2,8 @@
 
 > 🇧🇷 [Português](#português) &nbsp;|&nbsp; 🇺🇸 [English](#english)
 
+> **Monorepo:** Este pacote faz parte do [nfe_dart](https://github.com/Hinten/nfe_dart) — veja o [README raiz](https://github.com/Hinten/nfe_dart#readme) para a visão geral completa do ecossistema e como as packages trabalham juntas.
+
 ---
 
 ## Português
@@ -9,6 +11,12 @@
 ### O que é?
 
 `danfe_nfe` é um gerador de PDF para o **DANFE** (Documento Auxiliar da Nota Fiscal Eletrônica) em Dart puro. A partir dos XMLs da NF-e (`procNFe`) e dos eventos, ele produz documentos PDF prontos para impressão, em três layouts distintos, utilizando o pacote [`pdf`](https://pub.dev/packages/pdf).
+
+### Packages relacionadas
+
+| Package | Função |
+|---------|--------|
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Provê os modelos de dados (schemas) consumidos por este gerador |
 
 ### Funcionalidades
 
@@ -82,8 +90,8 @@ await File('cce.pdf').writeAsBytes(await pdfCCe.save());
 
 ### Informações adicionais
 
-- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart).
-- Depende do `nfe_client` para os modelos de dados da NF-e.
+- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart). Consulte o [README raiz](https://github.com/Hinten/nfe_dart#readme) para o fluxo completo de uso.
+- Depende do [`nfe_client`](https://pub.dev/packages/nfe_client) para os modelos de dados da NF-e.
 - Bugs e contribuições são bem-vindos em <https://github.com/Hinten/nfe_dart/issues>.
 
 ---
@@ -94,9 +102,13 @@ await File('cce.pdf').writeAsBytes(await pdfCCe.save());
 
 `danfe_nfe` is a pure-Dart PDF generator for the **DANFE** (Documento Auxiliar da Nota Fiscal Eletrônica — the Brazilian NF-e companion document). Given `procNFe` and event XMLs, it produces print-ready PDF documents in three different layouts, powered by the [`pdf`](https://pub.dev/packages/pdf) package.
 
-### Features
+### Related packages
 
-- 🖨️ Generate DANFE PDFs from one or more `procNFe` XML strings
+| Package | Role |
+|---------|------|
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Provides the data models (schemas) consumed by this generator |
+
+### Features
 - 📐 Three layout options:
   - **Portrait** (A4 retrato) — standard, most common layout
   - **Landscape** (A4 paisagem) — horizontal layout
@@ -166,8 +178,8 @@ await File('cce.pdf').writeAsBytes(await pdfCCe.save());
 
 ### Additional information
 
-- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
-- It depends on `nfe_client` for NF-e data models.
+- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo. See the [root README](https://github.com/Hinten/nfe_dart#readme) for the full end-to-end usage flow.
+- It depends on [`nfe_client`](https://pub.dev/packages/nfe_client) for NF-e data models.
 - Bugs and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
 
 

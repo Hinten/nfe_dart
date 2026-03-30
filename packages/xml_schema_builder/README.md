@@ -2,6 +2,8 @@
 
 > 🇧🇷 [Português](#português) &nbsp;|&nbsp; 🇺🇸 [English](#english)
 
+> **Monorepo:** Este pacote faz parte do [nfe_dart](https://github.com/Hinten/nfe_dart) — veja o [README raiz](https://github.com/Hinten/nfe_dart#readme) para a visão geral completa do ecossistema e como as packages trabalham juntas.
+
 ---
 
 ## Português
@@ -11,6 +13,13 @@
 `xml_schema_builder` é um gerador de código para `build_runner` que **cria classes Dart tipadas a partir de schemas XSD**. Basta anotar um typedef com `@FromSchema('caminho/para/schema.xsd')` e o gerador produz uma classe completa com métodos `fromXml`, `toXml`, `fromJson` e `toJson`.
 
 É utilizado pelo `nfe_client` para gerar todas as classes de schema da NF-e (nota, autorização, eventos, etc.) a partir dos XSDs oficiais do SEFAZ.
+
+### Packages relacionadas
+
+| Package | Função |
+|---------|--------|
+| [`xml_schema_validator`](https://pub.dev/packages/xml_schema_validator) | Dependência base para parse dos arquivos XSD |
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Usa este gerador para todas as classes de schema da NF-e |
 
 ### Funcionalidades
 
@@ -77,7 +86,7 @@ final json = obj.toJson();
 
 ### Informações adicionais
 
-- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart).
+- Este pacote faz parte do monorepo [nfe_dart](https://github.com/Hinten/nfe_dart). Consulte o [README raiz](https://github.com/Hinten/nfe_dart#readme) para o fluxo completo de uso.
 - Os schemas XSD da NF-e ficam em `packages/nfe_client/schemas/`.
 - Bugs e contribuições são bem-vindos em <https://github.com/Hinten/nfe_dart/issues>.
 
@@ -91,9 +100,14 @@ final json = obj.toJson();
 
 It is used by `nfe_client` to generate all NF-e schema classes (invoice, authorization, events, etc.) from the official SEFAZ XSD files.
 
-### Features
+### Related packages
 
-- 📝 Code generation driven by the `@FromSchema` annotation
+| Package | Role |
+|---------|------|
+| [`xml_schema_validator`](https://pub.dev/packages/xml_schema_validator) | Base dependency for XSD file parsing |
+| [`nfe_client`](https://pub.dev/packages/nfe_client) | Uses this generator for all NF-e schema classes |
+
+### Features
 - 🏗️ Generates classes with `fromXml` / `toXml` / `fromJson` / `toJson`
 - 🔄 Supports complex types, sequences, choices, extensions, and restrictions
 - 📦 Native `build_runner` integration
@@ -156,7 +170,7 @@ final json = obj.toJson();
 
 ### Additional information
 
-- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo.
+- This package is part of the [nfe_dart](https://github.com/Hinten/nfe_dart) monorepo. See the [root README](https://github.com/Hinten/nfe_dart#readme) for the full ecosystem overview.
 - NF-e XSD schemas live under `packages/nfe_client/schemas/`.
 - Bugs and contributions are welcome at <https://github.com/Hinten/nfe_dart/issues>.
 
